@@ -1,0 +1,818 @@
+<!-- Card Details Page -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- AOS link -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- CSS link -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- TailwindCSS link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Daisy ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/57836aaf8e.js" crossorigin="anonymous"></script>
+
+
+    <title>Card Details Page</title>
+
+</head>
+
+<body>
+
+    <div class="container mx-auto my-[50px]">
+        <!-- Header Section -->
+        <section id="header">
+
+            <!-- Navbar Section -->
+            <nav>
+                <div class="navbar bg-base-100">
+                    <div class="navbar-start">
+                        <div class="dropdown">
+                            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 6h16M4 12h8m-8 6h16" />
+                                </svg>
+                            </div>
+                            <ul tabindex="0"
+                                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                <li><a href="#"><i class="fa-regular fa-user text-[25px]"></i></a></li>
+                                <li><a href="#"><span class="lg:text-[25px] text-[18px]">Post</span><i
+                                            class="fa-regular fa-pen-to-square lg:text-[25px] text-[18px]"></i></a></li>
+                                <li><a href="#"><i class="fa-regular fa-bell lg:text-[25px] text-[18px] "></i></a></li>
+                            </ul>
+                        </div>
+                        <button class=" hover:bg-gray-200 border px-[20px] rounded-2xl  text-[55px] font-bold"><a
+                                href="/index.html">Devspare!</a></button>
+                    </div>
+                    <!-- <div class="navbar-center hidden lg:flex">
+                                    <ul class="menu menu-horizontal px-1">
+                                        <li><a href="#"><i class="fa-regular fa-user text-[25px]"></i></a></li>
+                                        <li><a href="#"><span class="text-[25px]">Post</span><i
+                                                    class="fa-regular fa-pen-to-square text-[25px]"></i></a></li>
+                                        <li><a href="#"><i class="fa-regular fa-bell text-[25px]"></i></a></li>
+                    
+                                    </ul>
+                                </div> -->
+                    <div class="form-control  w-full">
+                        <input type="text" placeholder="Search" class="input input-bordered   w-[450px]" />
+                    </div>
+
+                    <div class="navbar-end flex gap-2">
+                        <div class="flex gap-2">
+                            <!-- <div class="form-control">
+                                            <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                                        </div> -->
+                            <div class="navbar-center hidden lg:flex">
+                                <ul class="menu menu-horizontal px-1">
+                                    <li><a href="#"><i class="fa-regular fa-user text-[25px]"></i></a></li>
+
+                                    <!-- Post -->
+                                    <li><a href="/post.html"><span class="text-[25px]">Post</span><i
+                                                class="fa-regular fa-pen-to-square text-[25px]"></i></a>
+                                    </li>
+
+                                    <li><a href="#"><i class="fa-regular fa-bell text-[25px]"></i></a></li>
+
+                                </ul>
+                            </div>
+                            <div class="dropdown dropdown-end">
+                                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                                    <div class="w-10 rounded-full">
+                                        <img alt="Tailwind CSS Navbar component"
+                                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    </div>
+                                </div>
+                                <ul tabindex="0"
+                                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                    <li>
+                                        <a class="justify-between">
+                                            Profile
+
+                                        </a>
+                                    </li>
+                                    <li><a>Dashboard</a></li>
+                                    <li><a href="/logout.html">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </nav>
+
+            <!-- Divider -->
+            <div class="divider"></div>
+
+            <!-- Header Section -->
+            <div class="subHeader lg:max-w-[1100px] max-w-[300px] mx-auto">
+                <h1 class="lg:text-[27px] text-[20px]">Following</h1>
+            </div>
+
+            <!-- Divider -->
+            <div class="divider"></div>
+
+        </section>
+
+
+        <!-- Content Section -->
+        <section id="content" class=" lg:max-w-[1100px] w-full mx-auto">
+
+            <!-- Post Image -->
+          <div class="flex justify-between items-center gap-10">
+            <div class=" lg:mt-12 mt-[25px]">
+                <img id="postImg" class="w-full h-[140px] lg:h-[300px] rounded-lg" src=" " alt="UI/UX image">
+            </div>
+
+            <div>
+                <!-- Post Title -->
+                <h1 id="postTitle" class="lg:text-[40px] text-[30px] font-bold">
+                </h1>
+
+                <!-- User Information -->
+                <div class="flex lg:gap-[20px] gap-[15px] items-center ">
+
+                    <!-- Image -->
+
+                    <img class="rounded-[300px] w-[70px] h-[70px]"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/005/346/410/small_2x/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo.jpg"
+                        alt="">
+
+
+                    <div>
+                        <!-- User Details -->
+                        <div class="flex lg:gap-[10px] gap-[8px] items-center lg:text-[20px] text-[18px]">
+                            <!-- Name -->
+                            <h2 id="" class="lg:text-[22px] text-[16px]">Prosenjith Dash Pappu . </h2>
+                            <p class="text-green-500"> Follow</p>
+                        </div>
+
+                        <!-- Date & Time -->
+                        <div class="flex gap-[10px] lg:text-[15px] text-[10px] text-gray-500">
+                            <p>30 min read</p>
+                            <p>Nov 24,2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+            <div class="lg:mt-12">
+
+                
+
+                <!-- User Activities -->
+                <div class="divider"></div>
+
+                <div class="lg:flex lg:justify-between lg:items-centerc">
+                    <!-- Like & Comment -->
+                    <div class="flex gap-[20px] items-center text-gray-400">
+                        <!-- Like -->
+                        <div class="flex gap-[8px] items-center text-[18px]">
+
+                            <!-- Like Icon -->
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="34" viewBox="0 0 100 34"
+                                    fill="none">
+                                    <rect x="0.5" y="0.5" width="99" height="33" rx="4.5" fill="white" stroke="black" />
+                                    <path
+                                        d="M59.331 15.0496C59.331 14.0246 58.4307 13.1909 57.3247 13.1909H52.2839C52.6543 12.0693 53.0943 9.93075 51.6653 8.62722C51.2341 8.23407 50.6853 8.01158 50.1199 8.00059C49.5502 7.98802 49.0538 8.17727 48.6839 8.54346C48.4813 8.74516 48.3693 9.01082 48.3708 9.28632V9.47242C48.3708 11.3858 47.4295 13.1579 45.853 14.212C45.387 14.5237 44.8749 14.7716 44.3325 14.948C44.3196 14.7231 44.2143 14.5113 44.0381 14.3561C43.8619 14.2009 43.6282 14.1141 43.385 14.1136H40.5033C40.2508 14.1138 40.0088 14.2068 39.8302 14.3722C39.6516 14.5376 39.5512 14.7618 39.5508 14.9957V25.1176C39.5511 25.3516 39.6515 25.5758 39.8301 25.7413C40.0087 25.9067 40.2508 25.9997 40.5033 26H43.3856C43.638 25.9997 43.88 25.9066 44.0585 25.7413C44.2371 25.5759 44.3375 25.3517 44.3379 25.1179V24.7585C46.0178 25.0213 47.7508 25.1535 49.5285 25.1535C51.5158 25.1535 53.5586 24.9891 55.6423 24.6603C56.1495 24.6473 56.6313 24.4516 56.9853 24.1148C57.3394 23.778 57.5377 23.3267 57.5383 22.8566C57.5383 22.5543 57.4567 22.2695 57.3143 22.019C58.1272 21.7887 58.7206 21.0872 58.7206 20.2598C58.7206 19.8724 58.5901 19.5138 58.3688 19.2169C58.6614 19.0582 58.904 18.8314 59.0728 18.5591C59.2416 18.2867 59.3306 17.9783 59.331 17.6642C59.331 17.1559 59.1021 16.6973 58.7356 16.3691C58.9243 16.1967 59.0741 15.9912 59.1763 15.7647C59.2785 15.5382 59.3311 15.2951 59.331 15.0496ZM43.2076 24.953H40.6811V15.1606H43.2076V24.953ZM57.3846 16.9085C57.8345 16.9085 58.2007 17.2475 58.2007 17.6645C58.2007 18.0815 57.8345 18.4202 57.3846 18.4202H54.0404C53.8905 18.4202 53.7467 18.4753 53.6407 18.5735C53.5347 18.6717 53.4752 18.8048 53.4752 18.9437C53.4752 19.0825 53.5347 19.2157 53.6407 19.3138C53.7467 19.412 53.8905 19.4672 54.0404 19.4672H56.7347C56.9616 19.4674 57.1792 19.551 57.3396 19.6996C57.5 19.8483 57.5902 20.0498 57.5903 20.26C57.59 20.4701 57.4998 20.6715 57.3394 20.8201C57.179 20.9686 56.9615 21.0521 56.7347 21.0524H54.7717C54.6218 21.0524 54.478 21.1075 54.372 21.2057C54.266 21.3039 54.2065 21.437 54.2065 21.5759C54.2065 21.7147 54.266 21.8479 54.372 21.946C54.478 22.0442 54.6218 22.0994 54.7717 22.0994H55.5906C55.8073 22.0996 56.0152 22.1795 56.1685 22.3215C56.3217 22.4635 56.4079 22.6561 56.408 22.8569C56.4077 23.0576 56.3215 23.2501 56.1683 23.392C56.015 23.534 55.8073 23.6138 55.5906 23.6141C55.5583 23.6141 55.5264 23.6167 55.495 23.6217C51.5879 24.2423 47.837 24.2656 44.3379 23.695V16.0476C45.1195 15.8372 45.8561 15.5034 46.5151 15.0608C48.3849 13.8104 49.5014 11.7214 49.5014 9.47242V9.28632C49.501 9.27656 49.504 9.26696 49.5098 9.25883C49.6582 9.11173 49.8523 9.04158 50.0967 9.04734C50.3725 9.05257 50.6478 9.16853 50.8724 9.37348C52.2621 10.6409 51.0109 13.4037 50.9657 13.5011C50.9374 13.5592 50.9216 13.6228 50.9182 13.6895C50.9182 13.6963 50.9162 13.7031 50.9159 13.7097L50.9156 13.7144C50.9156 13.7322 50.9193 13.7492 50.9213 13.7667C50.923 13.7824 50.9233 13.7981 50.9264 13.8131C50.9301 13.8314 50.9368 13.8487 50.9425 13.8662C50.9476 13.8814 50.9512 13.8968 50.9577 13.9112C50.964 13.9259 50.9727 13.939 50.9804 13.9528C50.9897 13.9696 50.9982 13.9869 51.0095 14.0026C51.016 14.0117 51.0242 14.0196 51.0312 14.0282C51.0462 14.0471 51.0615 14.0657 51.0793 14.0824C51.0843 14.0871 51.0906 14.091 51.0956 14.0955C51.1171 14.1143 51.1392 14.1321 51.164 14.1478C51.1669 14.1497 51.1697 14.1505 51.1725 14.1523C51.1985 14.168 51.2248 14.1832 51.2542 14.195C51.3322 14.2269 51.4135 14.2395 51.4935 14.2379H57.3247C57.8079 14.2379 58.201 14.6017 58.201 15.0493C58.201 15.4969 57.8082 15.8613 57.325 15.8613H53.6744C53.5245 15.8613 53.3808 15.9164 53.2748 16.0146C53.1688 16.1128 53.1093 16.2459 53.1093 16.3848C53.1093 16.5236 53.1688 16.6568 53.2748 16.755C53.3808 16.8531 53.5245 16.9083 53.6744 16.9083L57.3846 16.9085Z"
+                                        fill="black" />
+                                </svg>
+                            </div>
+                            <p id="postlikes"> </p>
+
+                        </div>
+
+                        <!-- Comment -->
+                        <div class="flex gap-[8px] items-center text-[18px]">
+
+                            <!-- Comment Icon -->
+                            <div>
+                                <!-- Test start -->
+                                <!-- You can open the modal using ID.showModal() method -->
+
+
+                                <svg class="" onclick="my_modal_4.showModal()" xmlns="http://www.w3.org/2000/svg"
+                                    width="100" height="34" viewBox="0 0 100 34" fill="none">
+                                    <rect x="0.5" y="0.5" width="99" height="33" rx="4.5" fill="white" stroke="black" />
+                                    <path
+                                        d="M41.6396 24.6699C41.6842 24.7686 41.7551 24.8521 41.844 24.9105C41.9328 24.969 42.0359 25 42.1412 25C43.7302 25 45.0746 24.5999 46.6016 23.668C47.3424 23.7895 48.8052 23.9397 49.4475 23.9397C54.2954 23.9397 58.2387 20.5891 58.2387 16.4693C58.2387 12.3495 54.2954 9 49.4475 9C44.5995 9 40.6562 12.3495 40.6562 16.4693C40.6562 18.4111 41.561 20.2876 43.1533 21.678C42.7858 22.538 42.3022 23.3396 41.7171 24.0589C41.5798 24.2308 41.5488 24.4693 41.6396 24.6699ZM41.7636 16.4693C41.7636 12.9822 45.2108 10.1451 49.4475 10.1451C53.6842 10.1451 57.1313 12.9822 57.1313 16.4693C57.1313 19.9563 53.6842 22.7934 49.4475 22.7934C48.8118 22.7934 47.1575 22.6169 46.5983 22.5045C46.463 22.4794 46.3235 22.5054 46.2052 22.5779C45.1731 23.2313 44.2728 23.605 43.3094 23.7631C43.7222 23.1178 44.0675 22.4288 44.3393 21.7078C44.3833 21.5917 44.3893 21.4638 44.3565 21.3438C44.3237 21.2237 44.2539 21.1181 44.1577 21.043C42.6129 19.8325 41.7636 18.2071 41.7636 16.4693Z"
+                                        fill="black" />
+                                </svg>
+                                <dialog id="my_modal_4" class="modal ">
+                                    <div class="modal-box w-[700px] max-w-5xl ">
+                                        <h3 class="text-[34px] lg:mb-[20px] text-black font-semibold">Comments
+                                            <span></span></h3>
+
+                                        <!-- Comment Input Box -->
+                                        <div>
+                                            <div class="card bg-base-100 w-[650px] border border-gray-200 shadow-xl">
+                                                <div class="card-body">
+
+                                                    <!-- Profile info -->
+                                                    <div class="flex gap-[10px] items-center">
+                                                        <img id="userPic" class="rounded-[300px] w-[50px] h-[50px]"
+                                                            src="" alt="">
+
+                                                        <h3 id="username" class="test-[24px] text-gray-700 font-serif">
+                                                            Prosenjith Dash Pappu</h3>
+                                                    </div>
+
+                                                    <!-- Input Comment -->
+                                                    <div>
+                                                        <form id="commentForm" class="mt-[20px]">
+                                                            <textarea id="textareaData"
+                                                                class="p-[10px] rounded-md border-0 border-gray-200 text-[20px] text-black placeholder:text-gray-300"
+                                                                cols="46" rows="2" placeholder="What are your thoughts?"></textarea>
+                                                            <div class="flex items-center gap-[10px]">
+                                                                <button type="button"
+                                                                    class="hover:border py-[5px] px-[15px] hover:rounded-[50px] hover:bg-green-500 hover:text-white text-black">
+                                                                    Cancel
+                                                                </button>
+                                                                <button type="submit"
+                                                                    class="hover:border py-[5px] px-[15px] hover:rounded-[50px] hover:bg-green-500 hover:text-white text-black">
+                                                                    Send
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    
+
+
+
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <!-- More Relevant comments -->
+
+                                        <div class="mt-[70px]">
+                                            <div class="flex items-center gap-[10px]">
+                                                <h2 class="text-[20px] text-black font-bold">MOST RELEVANT</h2>
+
+                                            </div>
+
+                                            <div class="divider"></div>
+
+                                            <div id="comments-container" class="comments-section">
+                                                <!-- Comments will be dynamically rendered here -->
+                                            </div>
+                                            <!-- comment 1 -->
+
+
+
+
+
+
+                                            <div class="modal-action">
+                                                <form method="dialog">
+                                                    <!-- if there is a button, it will close the modal -->
+                                                    <button class="btn">Close</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                </dialog>
+                                <!-- Test end -->
+
+                            </div>
+                            <p id="totalComment"> 0</p>
+
+                        </div>
+                    </div>
+
+                    <!-- Save, Share & more  -->
+                    <div class="flex gap-[20px] items-center">
+
+                        <!-- save icon -->
+
+                        <div class="dropdown ">
+
+                            <svg tabindex="0" role="button" class="border rounded-md py-[0px] px-[0px] border-gray-600"
+                                xmlns="http://www.w3.org/2000/svg" width="150" height="34" viewBox="0 0 100 34"
+                                fill="none">
+                                <rect x="0.5" y="0.5" rx="4.5" fill="white" stroke="black" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M53.5145 7C57.242 7 59.3804 8.679 59.3804 11.604V26.14C59.3804 26.75 59.0354 27.299 58.4552 27.606C57.8771 27.914 57.1804 27.92 56.5958 27.62L50.0464 24.253L43.4365 27.627C43.1508 27.773 42.8376 27.847 42.5233 27.847C42.1991 27.847 41.8749 27.768 41.5804 27.61C41.0013 27.303 40.6562 26.754 40.6562 26.145V11.421C40.6562 8.611 42.7958 7 46.5266 7H53.5145ZM53.5145 8.5H46.5266C43.7255 8.5 42.3046 9.482 42.3046 11.421V26.145C42.3046 26.239 42.3639 26.29 42.4134 26.316C42.4628 26.344 42.5409 26.364 42.631 26.318L49.6442 22.738C49.8947 22.611 50.2013 22.61 50.453 22.739L57.4057 26.313C57.4969 26.361 57.5749 26.339 57.6244 26.312C57.6738 26.285 57.7321 26.234 57.7321 26.14L57.7317 11.49C57.7234 10.6294 57.5404 8.5 53.5145 8.5ZM53.9967 13.7285C54.4516 13.7285 54.8209 14.0645 54.8209 14.4785C54.8209 14.8925 54.4516 15.2285 53.9967 15.2285H45.9549C45.5 15.2285 45.1308 14.8925 45.1308 14.4785C45.1308 14.0645 45.5 13.7285 45.9549 13.7285H53.9967Z"
+                                    fill="black" />
+                            </svg>
+
+                            <div tabindex="0"
+                                class="dropdown-content mt-6 card card-compact bg-base-100 text-gray-600 z-[1] w-[300px] p-2 shadow-xl">
+                                <div class="card-body card-start ">
+
+                                    <!-- Share links -->
+                                    <div>
+
+
+
+                                        <div class="flex justify-between items-center">
+                                            <!-- list -->
+                                            <div class="flex items-center gap-[20px]">
+                                                <!-- check box -->
+                                                <div class="form-control">
+                                                    <label class="label cursor-pointer">
+
+                                                        <input type="checkbox" checked="checked" class="checkbox" />
+                                                    </label>
+                                                </div>
+
+                                                <p class="text-[20px] text-black">Reading list</p>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="divider"></div>
+
+                                        <p class="text-[20px] text-green-600">Create new list</p>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Share Icon -->
+                        <div>
+                            <div class="dropdown ">
+
+                                <button tabindex="0" role="button"
+                                    class="border rounded-md   py-[3px] px-[55px] border-gray-600"><i
+                                        class="fa-regular fa-share-from-square text-[20px]"></i></button>
+                                <div tabindex="0"
+                                    class="dropdown-content mt-6 card card-compact bg-base-100 text-gray-600 z-[1] w-[300px] p-2 shadow-xl">
+                                    <div class="card-body card-start ">
+
+                                        <!-- Share links -->
+                                        <div>
+
+                                            <!-- copy link -->
+                                            <a href="">
+                                                <div class="flex items-center gap-[20px] text-[20px] text-gray-500">
+                                                    <i class="fa-solid fa-link"></i>
+                                                    <p>Copy link</p>
+
+                                                </div>
+                                            </a>
+
+                                            <div class="divider"></div>
+
+                                            <!-- Facebook link -->
+                                            <a href="">
+                                                <div class="flex items-center gap-[20px] text-[20px] text-gray-500">
+                                                    <i class="fa-brands fa-facebook"></i>
+                                                    <p>Share on Facebook</p>
+                                                </div>
+                                            </a>
+
+                                            <div class="divider"></div>
+
+                                            <!-- LinkedIn link -->
+                                            <a href="">
+                                                <div class="flex items-center gap-[20px] text-[20px] text-gray-500">
+                                                    <i class="fa-brands fa-linkedin"></i>
+                                                    <p>Share on LinkedIn</p>
+                                                </div>
+                                            </a>
+
+                                            <div class="divider"></div>
+
+                                            <!-- x link -->
+                                            <a href="">
+                                                <div class="flex items-center gap-[20px] text-[20px] text-gray-500">
+                                                    <i class="fa-brands fa-x-twitter"></i>
+                                                    <p>Share on x</p>
+
+
+                                                </div>
+                                            </a>
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- More Icon -->
+
+                        <div class="dropdown ">
+
+                            <button tabindex="0" role="button"
+                                class="border rounded-md py-[3px] px-[55px] border-gray-600"><i
+                                    class="fa-solid fa-ellipsis text-[20px]"></i></button>
+                            <div tabindex="0"
+                                class="dropdown-content mt-6 card card-compact bg-base-100 text-gray-600 z-[1] w-[300px] p-2 shadow-xl">
+                                <div class="card-body card-start ">
+
+                                    <!-- Share links -->
+                                    <div>
+
+                                        <!-- copy link -->
+
+                                        <div class=" flex items-center gap-[20px] text-[18px] text-gray-500 mb-4">
+                                            <button class="border border-gray-600 p-1 rounded-[70px]"><i
+                                                    class="fa-solid fa-plus text-[20px]"></i></button>
+                                            <div>
+                                                <p class="text-[20px] text-gray-500">Show more</p>
+                                                <p class="text-[14px] text-gray-500">Recommend more stories like this to
+                                                    me.</p>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                        <div class=" flex items-center gap-[20px] text-[18px] text-gray-500">
+                                            <button class="border border-gray-600 p-1 rounded-[70px]"><i
+                                                    class="fa-solid fa-plus text-[20px]"></i></button>
+                                            <div>
+                                                <p class="text-[20px] text-gray-500">Show less</p>
+                                                <p class="text-[14px] text-gray-500">Recommend fewer stories like this
+                                                    to me.</p>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="divider"></div>
+
+                                        <p class="text-[20px] text-gray-500">Undo claps</p>
+                                        <div class="divider"></div>
+                                        <p class="text-[20px] text-gray-500">Follow author</p>
+                                        <div class="divider"></div>
+                                        <p class="text-[20px] mb-4 text-gray-500">Mute author</p>
+
+                                        <p class="text-[20px] text-red-500">Report story...</p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+
+
+
+
+                <!-- Post Description -->
+                <div class="text-gray-600">
+                    <p class="lg:text-[24px] text-[16px] lg:pt-2 lg:pb-2 pb-1">
+                    <div id="postDetails">
+
+                    </div>
+                    </p>
+                </div>
+            </div>
+
+
+
+
+        </section>
+
+    </div>
+
+    <!-- Footer Section -->
+    <section>
+        <footer class="footer bg-base-200 text-base-content p-10">
+            <nav>
+                <h6 class="footer-title">Services</h6>
+                <a class="link link-hover">Branding</a>
+                <a class="link link-hover">Design</a>
+                <a class="link link-hover">Marketing</a>
+                <a class="link link-hover">Advertisement</a>
+            </nav>
+            <nav>
+                <h6 class="footer-title">Company</h6>
+                <a class="link link-hover">About us</a>
+                <a class="link link-hover">Contact</a>
+                <a class="link link-hover">Jobs</a>
+                <a class="link link-hover">Press kit</a>
+            </nav>
+            <nav>
+                <h6 class="footer-title">Legal</h6>
+                <a class="link link-hover">Terms of use</a>
+                <a class="link link-hover">Privacy policy</a>
+                <a class="link link-hover">Cookie policy</a>
+            </nav>
+        </footer>
+        <footer class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
+            <aside class="grid-flow-col items-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                    clip-rule="evenodd" class="fill-current">
+                    <path
+                        d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z">
+                    </path>
+                </svg>
+                <p>
+                    ACME Industries Ltd.
+                    <br />
+                    Providing reliable tech since 1992
+                </p>
+            </aside>
+            <nav class="md:place-self-center md:justify-self-end">
+                <div class="grid grid-flow-col gap-4">
+                    <a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            class="fill-current">
+                            <path
+                                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            class="fill-current">
+                            <path
+                                d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            class="fill-current">
+                            <path
+                                d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+        </footer>
+    </section>
+
+
+
+
+
+
+    <!-- --------------------------------------------------------------- -->
+
+
+
+
+
+    <!-- Javascript Section -->
+
+    <!-- AOS JS FILE LINK -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="js/devspare.js"></script>
+    <script>
+        const renderPost = async (id) => {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const postId = urlParams.get("id"); // Extract 'id' from the query string
+
+                if (!postId) {
+                    console.error("Post ID is missing from the URL");
+                    return;
+                }
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch(`http://localhost/devspare/backend/api/v1/articles/article.php?id=${postId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                console.log(data.like_count)
+                document.getElementById("postTitle").innerHTML = `
+            <p>${data.title || "No content available."}</p>
+        `;
+                document.getElementById("postDetails").innerHTML = `
+            <p>${data.content || "No content available."}</p>
+        `;
+                document.getElementById("postlikes").innerHTML = `
+            <p>${data.like_count}</p>
+        `;
+
+
+
+                // Update the image source dynamically
+                // const imgElement = document.getElementById("postImg").querySelector("img");
+                // if (imgElement) {
+                //     imgElement.src = data.profile_pic || "https://via.placeholder.com/150";
+                //     imgElement.alt = data.title || "Post image";
+                // } else {
+                //     console.warn("Image element not found.");
+                // }
+
+                const postImg = document.getElementById("postImg");
+                if (postImg) {
+                    postImg.src = data.cover_pic || "https://via.placeholder.com/150";
+                    postImg.alt = data.title || "Post image";
+                } else {
+                    console.error("Element with ID 'postImg' not found.");
+                }
+                const user = await getUserData()
+                const userPic = document.getElementById("userPic");
+                if (userPic) {
+                    userPic.src = user.profile_pic || "https://via.placeholder.com/150";
+                    userPic.alt = data.title || "Post image";
+                } else {
+                    console.error("Element with ID 'postImg' not found.");
+                }
+                document.getElementById("username").innerHTML = `
+            <p>${user.name}</p>
+        `;
+
+
+            } catch (error) {
+                console.error("Error fetching data (Fetch):", error.message);
+                return null; // Return null to indicate an error
+            }
+        };
+
+
+        renderPost()
+        const getUserData = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch("http://localhost/devspare/backend/api/v1/users/get-user.php", {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                console.log(data)
+
+                return data;
+            } catch (error) {
+                console.error("Error fetching data (Fetch):", error.message);
+                return [];
+            }
+        };
+
+
+        const renderComment = async () => {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const postId = urlParams.get("id"); // Extract 'id' from the query string
+
+                if (!postId) {
+                    console.error("Post ID is missing from the URL");
+                    return;
+                }
+
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch(`http://localhost/devspare/backend/api/v1/comments/comment.php?article_id=${postId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                    },
+                });
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                document.getElementById("totalComment").innerHTML = `
+            <p>${data.length}</p>
+        `;
+                console.log(data.length);
+                // Clear previous comments
+
+
+                // Simulating static data for testing
+                const user = await getUserData()
+                console.log(user)
+
+                const commentsContainer = document.getElementById("comments-container");
+                commentsContainer.innerHTML = ""; // Clear previous comments
+
+                data.forEach((el) => {
+                    const commentHTML = `
+                <div class="comment-item my-[15px] flex items-center gap-[10px]">
+                    <!-- Profile image -->
+                    <img class="rounded-[300px] w-[50px] h-[50px]" src="${user.profile_pic}" alt="User Profile Picture">
+                    
+                    <!-- Name and Date -->
+                    <div>
+                        <p class="text-[18px] text-gray-700">${user.name}</p>
+                        <p class="text-gray-400 text-[17px]">${el.created_at.toString()}</p>
+                    </div>
+                </div>
+
+                <!-- Comment Content -->
+                <p class="text-[16px] text-gray-600">${el.content}</p>
+
+                <!-- Like & Reply -->
+                <div class="mt-[20px] flex items-center justify-between">
+                    <div class="flex items-center gap-[10px]">
+                        <button class="like-button text-blue-500 hover:text-blue-700">
+                            Like
+                        </button>
+                        <span>4 Likes</span>
+                    </div>
+                </div>
+            `;
+                    commentsContainer.innerHTML += commentHTML;
+                });
+            } catch (error) {
+                console.error("Error fetching comments:", error);
+            }
+        };
+
+        // Call the render function when the page loads
+        document.addEventListener("DOMContentLoaded", () => {
+            renderComment();
+        });
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+    // Attach the createComment function to the form submission
+    const commentForm = document.getElementById("commentForm");
+    if (commentForm) {
+        commentForm.addEventListener("submit", createComment);
+    }
+});
+
+async function createComment(event) {
+    event.preventDefault(); // Prevent the form from submitting and page reload
+    const accessToken = localStorage.getItem("accessToken");
+    const content = document.getElementById("textareaData").value;
+    const urlParams = new URLSearchParams(window.location.search);
+    const article_id = urlParams.get("id");
+    console.log(article_id)
+
+    if (!article_id) {
+        alert("Article ID is missing from the URL.");
+        return;
+    }
+
+    try {
+        const res = await axios.post(
+            "http://localhost/devspare/backend/api/v1/comments/comment.php",
+            {
+                article_id, // Using the extracted `article_id`
+                content,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
+        const responseData = res.data;
+
+        console.log("POST Response:", responseData);
+        alert(responseData.message);
+    } catch (error) {
+        console.error("Error during comment:", error.message);
+    }
+}
+
+
+    </script>
+</body>
+
+</html>

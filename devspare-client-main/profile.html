@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="profile.css">
+    <style>
+        /* Circular profile image style */
+        .profile-image img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Button to edit profile image */
+        .btn.profile-settings-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn.profile-settings-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Gallery image styling */
+        .gallery-image {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Loader and container styles */
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+
+        .loader {
+            display: none;
+            margin: 20px auto;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .gallery-item {
+            margin: 10px;
+            display: inline-block;
+            width: 23%;
+            box-sizing: border-box;
+        }
+
+        .gallery-item-info {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .gallery-item-likes,
+        .gallery-item-comments {
+            margin: 5px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 600px;
+            width: 80%;
+        }
+
+        .modal-header,
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            cursor: pointer;
+            color: #333;
+        }
+
+        .modal-list {
+            list-style-type: none;
+            padding: 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .modal-list li {
+            padding: 15px 0;
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .modal-list img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .modal-list .post-content {
+            flex-grow: 1;
+        }
+
+        .modal-list .post-content h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .modal-list .post-content p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="profile">
+                <div class="profile-image" onclick="document.getElementById('profile-pic-input').click();">
+                    <img class="profile-img"
+                        src="https://media.licdn.com/dms/image/v2/D5603AQGSAKbb-Qd7JQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718564057747?e=1739404800&v=beta&t=ZY2ZqmM9T2AFo3fYvIpfqgHjd4X2ngsHko6KS19bu-w"
+                        alt="Profile Image">
+                </div>
+
+                <input type="file" id="profile-pic-input" accept="image/*" style="display:none;"
+                    onchange="changeProfilePic(event)">
+
+                <div class="profile-user-settings">
+                    <h1 class="profile-user-name">Md. Mehedi Hasan Naim</h1>
+
+                    <button class="btn profile-settings-btn" aria-label="profile settings">
+                        <i class="fas fa-cog" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="profile-stats">
+                    <ul>
+                        <li><span class="profile-stat-count" onclick="showModal('posts')">164</span> posts</li>
+                        <li><span class="profile-stat-count" onclick="showModal('followers')">188</span> followers</li>
+                        <li><span class="profile-stat-count" onclick="showModal('following')">206</span> following</li>
+                    </ul>
+                </div>
+
+                <div class="profile-bio">
+                    <p><span class="profile-real-name">Naim</span> Competitive programmer, highly ambious 📷✈️🏕️</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="container mx-auto my-[50px]">
+                <!-- Header Section -->
+                <section id="header">
+
+
+                    <!-- Divider -->
+                    <div class="divider"></div>
+
+
+                    <!-- Divider -->
+                    <div class="divider"></div>
+
+                </section>
+
+
+                <!-- Content Section -->
+                <section id="content" class=" lg:max-w-[1100px] w-full mx-auto">
+
+                    <!-- Card - 01 -->
+                    <a href="/cardDetails.html">
+                        <div id="postsContainer"></div>
+                    </a>
+
+                </section>
+
+            </div>
+
+            <!-- Footer Section -->
+
+
+
+
+
+
+
+
+
+            <!-- --------------------------------------------------------------- -->
+
+
+
+
+
+
+        </div>
+    </main>
+
+    <!-- Modal for displaying lists -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <ul id="modal-list" class="modal-list">
+                    <!-- List items will be dynamically inserted here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeProfilePic(event) {
+            const file = event.target.files[0];
+            console.log(file)
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.querySelector('.profile-img').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+       function showModal(type) {
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalList = document.getElementById('modal-list');
+
+    modal.style.display = 'flex';
+
+    // Clear the previous list
+    modalList.innerHTML = '';
+
+    // Set the title and list depending on the type
+    if (type === 'followers') {
+        modalTitle.textContent = 'Followers';
+
+    } else if (type === 'following') {
+        modalTitle.textContent = 'Following';
+
+    }
+}
+
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        const getPostsData = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch("http://localhost/devspare/backend/api/v1/articles/article.php", {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                return data;
+            } catch (error) {
+                console.error("Error fetching data (Fetch):", error.message);
+                return [];
+            }
+        };
+        const getUserData = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch("http://localhost/devspare/backend/api/v1/users/get-user.php", {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                const userPic = document.querySelector(".profile-img");
+                if (userPic) {
+                    userPic.src = data.profile_pic || "https://via.placeholder.com/150";
+                    userPic.alt = data.title || "Post image";
+                }
+                return data;
+            } catch (error) {
+                console.error("Error fetching data (Fetch):", error.message);
+                return [];
+            }
+        };
+        
+        // Function to render articles in the DOM
+        const renderPosts = async () => {
+            const data = await getPostsData(); // Fetch posts data
+            const postsContainer = document.getElementById("postsContainer");
+
+            if (data.length === 0) {
+                postsContainer.innerHTML = "<p>No posts available.</p>";
+                return;
+            }
+
+            postsContainer.innerHTML = ""; // Clear previous content
+
+            for (const post of data) {
+
+
+                const postHTML = `
+                    <a href="/cardDetails.html?id=${post.article_id}" class="block">
+                        <div class="border-2 lg:p-[40px] p-[28px] border-solid rounded-lg mb-[30px]">
+                            <div class="content-items lg:flex justify-between lg:gap-8">
+                                <div class="basis-[60%]">
+                            
+                                    <h1 class="lg:text-[33px] text-[20px] font-bold">${post.title}</h1>
+                                    <p class="lg:text-[24px] text-[16px] lg:pb-2 pb-1">${post.content}</p>
+                                    <div class="flex gap-[50px] items-center">
+                                        <div class="flex gap-1 lg:text-[20px] text-[15px] items-center">
+                                            <i class="fa-regular fa-thumbs-up"></i>
+                                            <p>${post.like_count || 0}</p>
+                                        </div>
+                                        <div class="flex gap-1 lg:text-[20px] text-[15px] items-center">
+                                            <i class="fa-regular fa-comment"></i>
+                                            <p>${post.comments || 0}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lg:basis-[40%] mt-2">
+                                    <img class="w-full h-[240px] lg:h-[280px] rounded-lg"
+                                        src="${post.cover_pic || 'https://via.placeholder.com/300'}"
+                                        alt="${post.title || 'Post image'}">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                `;
+
+                postsContainer.innerHTML += postHTML;
+            }
+        };
+        // Call the render function
+        renderPosts();
+        const user = getUserData()
+        user.then((data) =>
+            document.getElementById("profile-avatar").querySelector("img").src =
+            data.profile_pic || "https://via.placeholder.com/150"
+        )
+
+
+        const getFollowing = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch("http://localhost/devspare/backend/api/v1/follows/follow.php?type=following", {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                
+                return data;
+            } catch (error) {
+                console.error("Error fetching data (Fetch):", error.message);
+                return [];
+            }
+        };
+
+        getFollowing().then((d) => (d.map((e) => getUserDataByFollowing(e.followed_id)[0])))
+
+        const getFollower = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch("http://localhost/devspare/backend/api/v1/follows/follow.php?type=followers", {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                console.log(data)
+                return data;
+            } catch (error) {
+                console.error("Error fetching data (Fetch):", error.message);
+                return [];
+            }
+        };
+
+        getFollower().then((d) => console.log(d.map((e) => getUserDataByFollower(e.follower_id)[0])))
+
+    </script>
+</body>
+
+</html>

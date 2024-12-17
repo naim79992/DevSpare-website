@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .verification-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .verification-container h1 {
+            margin-bottom: 10px;
+        }
+        .verification-container p {
+            margin: 10px 0;
+        }
+        .code-inputs {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .code-inputs input {
+            width: 40px;
+            height: 50px;
+            text-align: center;
+            font-size: 24px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .code-inputs input:focus {
+            border-color: #f28b82;
+        }
+        .timer {
+            color: red;
+        }
+        .confirm-button {
+            background-color: #f28b82;
+            border: none;
+            color: #fff;
+            padding: 10px 0;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .confirm-button:hover {
+            background-color: #e57373;
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <h1>Verification</h1>
+        <p>Enter the 6 digit code we sent you<br>via your email</p>
+        <div class="code-inputs">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+        </div>
+        <p>Code expires in <span class="timer" id="timer">10:00</span></p>
+        <button class="confirm-button" id="confirmButton" onclick="confirmCode()">Confirm</button>
+    </div>
+
+    <script>
+        let timerElement = document.getElementById('timer');
+        let confirmButton = document.getElementById('confirmButton');
+        let timeLeft = 600; // time in seconds for 10 minutes
+        let timerInterval;
+
+        function updateTimer() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
+            timerElement.textContent = `${minutes}:${seconds}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                confirmButton.disabled = true; // Disable the confirm button when time expires
+                alert("The code has expired. Please request a new one.");
+            } else {
+                timeLeft--;
+            }
+        }
+
+        timerInterval = setInterval(updateTimer, 1000); // Start the countdown
+
+        // Disable inputs when timer expires
+        function disableInputs() {
+            let inputs = document.querySelectorAll('.code-inputs input');
+            inputs.forEach(input => input.disabled = true);
+        }
+
+        // Stop the timer when it expires and disable inputs
+        setTimeout(disableInputs, timeLeft * 1000);
+
+        // Function to confirm the code and send the activation request
+        async function confirmCode() {
+            // Get the code entered by the user
+            let codeInputs = document.querySelectorAll('.code-inputs input');
+            let code = Array.from(codeInputs).map(input => input.value).join('');
+            
+            if (code.length !== 6) {
+                alert("Please enter the full 6-digit code.");
+                return;
+            }
+
+            // Retrieve activation_token from localStorage
+            let activationToken = localStorage.getItem('activation_token');
+            if (!activationToken) {
+                alert("Activation token not found. Please try registering again.");
+                return;
+            }
+
+            try {
+                // Make the API request
+                const response = await fetch('http://localhost/devspare/backend/api/v1/auth/activate.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${activationToken}`
+                    },
+                    body: JSON.stringify({ code })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert("Account activated successfully!");
+                    window.location.href = 'activation_page.html'; // Redirect to success page
+                } else {
+                    alert(data.message || "An error occurred during activation.");
+                }
+            } catch (error) {
+                console.error(error);
+                alert("An error occurred. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

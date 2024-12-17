@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- AOS link -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- TailwindCSS link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+     <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Daisy ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/57836aaf8e.js" crossorigin="anonymous"></script>
+    <title>Logout</title>
+</head>
+<body>
+    <div class="container mx-auto my-[50px]">
+        
+        <button class="hover:bg-gray-200 border text-blue-600 px-[20px] rounded-2xl text-[55px] font-bold">
+            <a href="/index.html">Devspare!</a>
+        </button>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- body section-->
+        <div class="max-w-[600px] mx-auto my-[20px]">
+            <h2 class="text-[35px] text-center font-semibold ">Welcome to Devspare</h2>
+
+            <form onsubmit="login(event)">
+                <div class="contact-right">
+                    <div class="mt-[15px]">
+                        <p class=" text-[16px] pb-[8px]">Email</p>
+                        <input id="email" class="border-2 p-[10px] shadow-xl w-full rounded-lg bg-gray-100" type="email" name="email" placeholder="Enter Your Email"
+                            required>
+                    </div>
+                    <div class="mt-[15px]">
+                        <p class=" text-[16px] pb-[8px]">Password</p>
+                        <input id="password" class="border-2 shadow-xl p-[10px] w-full rounded-lg bg-gray-100" type="password" name="password"
+                            placeholder="Enter Your password" required>
+                    </div>
+
+                    <div class="mt-[5px] text-end">
+                        <p><a class="link link-neutral">Forgotten password</a></p>
+                    </div>
+
+                    <div class="mt-[20px] text-center">
+                        <button class="btn text-white bg-blue-600 shadow-xl text-[20px]" type="submit">
+                            Log in
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="divider text-[25px] mt-[30px]">OR</div>
+
+            <div class="text-[18px] text-center">
+                <p>Don't have an account? <span><a href="/signup.html" class="link link-primary">Sign Up</a></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function login(event) {
+             event.preventDefault(); // Prevent the form from submitting and page reload
+             const email = document.getElementById("email").value;
+             const password = document.getElementById("password").value;
+     
+             try {
+                 const res = await axios.post("http://localhost/devspare/backend/api/v1/auth/login.php", {
+                     email,
+                     password
+                 });
+     
+                 const responseData = res.data;
+     
+                 console.log("POST Response:", responseData);
+                 alert(responseData.message);
+     
+                 // Assuming the activation token is in responseData[1]
+                 const accessToken = responseData[1];
+                 if (accessToken) {
+                     localStorage.setItem("accessToken", accessToken);
+                     console.log("accessToken token stored successfully.",accessToken);
+                 } else {
+                     console.log("accessToken token not found.");
+                 }
+             } catch (error) {
+                 console.error("Error during login:", error.message);
+             }
+         }
+         async function login(event) {
+             event.preventDefault(); // Prevent the form from submitting and page reload
+             const email = document.getElementById("email").value;
+             const password = document.getElementById("password").value;
+     
+             try {
+                 const res = await axios.post("http://localhost/devspare/backend/api/v1/auth/login.php", {
+                     email,
+                     password
+                 });
+     
+                 const responseData = res.data;
+     
+                 console.log("POST Response:", responseData);
+     
+                 // Assuming the activation token is in responseData[1]
+                 const accessToken = responseData[1];
+                 if (accessToken) {
+                     localStorage.setItem("accessToken", accessToken);
+                     console.log("accessToken token stored successfully.",accessToken);
+                     window.location.href = 'index.html'; 
+                 } else {
+                     console.log("accessToken token not found.");
+                 }
+             } catch (error) {
+                 console.error("Error during login:", error.message);
+             }
+         }
+     </script>
+     
+     
+</body>
+</html>
